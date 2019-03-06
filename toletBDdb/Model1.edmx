@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="toletBDdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="users_id" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="rent" Type="varchar" MaxLength="100" />
+          <Property Name="img1" Type="varbinary(max)" />
+          <Property Name="img2" Type="varbinary(max)" />
+          <Property Name="img3" Type="varbinary(max)" />
+          <Property Name="img4" Type="varbinary(max)" />
+          <Property Name="datee" Type="datetime" />
+          <Property Name="addresss_id" Type="varchar" MaxLength="100" />
+          <Property Name="availability" Type="varchar" MaxLength="100" />
+          <Property Name="detail_id" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Addresss">
+          <Key>
+            <PropertyRef Name="addresss_id" />
+          </Key>
+          <Property Name="addresss_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="100" />
+          <Property Name="area" Type="varchar" MaxLength="100" />
+          <Property Name="street_name" Type="varchar" MaxLength="100" />
+          <Property Name="street_no" Type="varchar" MaxLength="100" />
+          <Property Name="additional_addresss" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="A_id" />
+          </Key>
+          <Property Name="A_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Pass" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Detailsofad">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="number_of_room" Type="int" />
+          <Property Name="number_of_kitchen" Type="int" />
+          <Property Name="number_of_bathroom" Type="int" />
+          <Property Name="size_of_flat" Type="varchar" MaxLength="100" />
+          <Property Name="additional_info" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Governs">
+          <Key>
+            <PropertyRef Name="G_id" />
+          </Key>
+          <Property Name="G_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_id" Type="varchar" MaxLength="100" />
+          <Property Name="request" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Interested">
+          <Key>
+            <PropertyRef Name="I_id" />
+          </Key>
+          <Property Name="I_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad_id" Type="varchar" MaxLength="100" />
+          <Property Name="users_id" Type="varchar" MaxLength="100" />
+          <Property Name="msg" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="users_pass" Type="varchar" MaxLength="100" />
+          <Property Name="phone_no" Type="varchar" MaxLength="100" />
+          <Property Name="addresss" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__Ad__addresss_id__1920BF5C">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="addresss_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="addresss_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ad__detail_id__1A14E395">
+          <End Role="Detailsofad" Type="Self.Detailsofad" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detailsofad">
+              <PropertyRef Name="detail_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ad__users_id__182C9B23">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Governs__users_i__32E0915F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Governs" Type="Self.Governs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Governs">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Intereste__ad_id__2C3393D0">
+          <End Role="Ad" Type="Self.Ad" Multiplicity="0..1" />
+          <End Role="Interested" Type="Self.Interested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="Interested">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Intereste__users__2D27B809">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Interested" Type="Self.Interested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Interested">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="toletBDdbModelStoreContainer">
+          <EntitySet Name="Ad" EntityType="Self.Ad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Addresss" EntityType="Self.Addresss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detailsofad" EntityType="Self.Detailsofad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Governs" EntityType="Self.Governs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interested" EntityType="Self.Interested" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ad__addresss_id__1920BF5C" Association="Self.FK__Ad__addresss_id__1920BF5C">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ad__detail_id__1A14E395" Association="Self.FK__Ad__detail_id__1A14E395">
+            <End Role="Detailsofad" EntitySet="Detailsofad" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ad__users_id__182C9B23" Association="Self.FK__Ad__users_id__182C9B23">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Governs__users_i__32E0915F" Association="Self.FK__Governs__users_i__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Governs" EntitySet="Governs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Intereste__ad_id__2C3393D0" Association="Self.FK__Intereste__ad_id__2C3393D0">
+            <End Role="Ad" EntitySet="Ad" />
+            <End Role="Interested" EntitySet="Interested" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Intereste__users__2D27B809" Association="Self.FK__Intereste__users__2D27B809">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Interested" EntitySet="Interested" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="toletBDdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="ad_id" />
+          </Key>
+          <Property Name="ad_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="img1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="datee" Type="DateTime" Precision="3" />
+          <Property Name="addresss_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="availability" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="detail_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Addresss" Relationship="Self.FK__Ad__addresss_id__1920BF5C" FromRole="Ad" ToRole="Addresss" />
+          <NavigationProperty Name="Detailsofad" Relationship="Self.FK__Ad__detail_id__1A14E395" FromRole="Ad" ToRole="Detailsofad" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Ad__users_id__182C9B23" FromRole="Ad" ToRole="Users" />
+          <NavigationProperty Name="Interested" Relationship="Self.FK__Intereste__ad_id__2C3393D0" FromRole="Ad" ToRole="Interested" />
+        </EntityType>
+        <EntityType Name="Addresss">
+          <Key>
+            <PropertyRef Name="addresss_id" />
+          </Key>
+          <Property Name="addresss_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="street_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="street_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="additional_addresss" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK__Ad__addresss_id__1920BF5C" FromRole="Addresss" ToRole="Ad" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="A_id" />
+          </Key>
+          <Property Name="A_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Detailsofad">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number_of_room" Type="Int32" />
+          <Property Name="number_of_kitchen" Type="Int32" />
+          <Property Name="number_of_bathroom" Type="Int32" />
+          <Property Name="size_of_flat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="additional_info" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK__Ad__detail_id__1A14E395" FromRole="Detailsofad" ToRole="Ad" />
+        </EntityType>
+        <EntityType Name="Governs">
+          <Key>
+            <PropertyRef Name="G_id" />
+          </Key>
+          <Property Name="G_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="request" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Governs__users_i__32E0915F" FromRole="Governs" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Interested">
+          <Key>
+            <PropertyRef Name="I_id" />
+          </Key>
+          <Property Name="I_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="users_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="msg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK__Intereste__ad_id__2C3393D0" FromRole="Interested" ToRole="Ad" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Intereste__users__2D27B809" FromRole="Interested" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="users_pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="addresss" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK__Ad__users_id__182C9B23" FromRole="Users" ToRole="Ad" />
+          <NavigationProperty Name="Governs" Relationship="Self.FK__Governs__users_i__32E0915F" FromRole="Users" ToRole="Governs" />
+          <NavigationProperty Name="Interested" Relationship="Self.FK__Intereste__users__2D27B809" FromRole="Users" ToRole="Interested" />
+        </EntityType>
+        <Association Name="FK__Ad__addresss_id__1920BF5C">
+          <End Role="Addresss" Type="Self.Addresss" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresss">
+              <PropertyRef Name="addresss_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="addresss_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ad__detail_id__1A14E395">
+          <End Role="Detailsofad" Type="Self.Detailsofad" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detailsofad">
+              <PropertyRef Name="detail_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ad__users_id__182C9B23">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ad" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Intereste__ad_id__2C3393D0">
+          <End Role="Ad" Type="Self.Ad" Multiplicity="0..1" />
+          <End Role="Interested" Type="Self.Interested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ad">
+              <PropertyRef Name="ad_id" />
+            </Principal>
+            <Dependent Role="Interested">
+              <PropertyRef Name="ad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Governs__users_i__32E0915F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Governs" Type="Self.Governs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Governs">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Intereste__users__2D27B809">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Interested" Type="Self.Interested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="Interested">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="toletBDdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ad" EntityType="Self.Ad" />
+          <EntitySet Name="Addresss" EntityType="Self.Addresss" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Detailsofad" EntityType="Self.Detailsofad" />
+          <EntitySet Name="Governs" EntityType="Self.Governs" />
+          <EntitySet Name="Interested" EntityType="Self.Interested" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Ad__addresss_id__1920BF5C" Association="Self.FK__Ad__addresss_id__1920BF5C">
+            <End Role="Addresss" EntitySet="Addresss" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ad__detail_id__1A14E395" Association="Self.FK__Ad__detail_id__1A14E395">
+            <End Role="Detailsofad" EntitySet="Detailsofad" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ad__users_id__182C9B23" Association="Self.FK__Ad__users_id__182C9B23">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ad" EntitySet="Ad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Intereste__ad_id__2C3393D0" Association="Self.FK__Intereste__ad_id__2C3393D0">
+            <End Role="Ad" EntitySet="Ad" />
+            <End Role="Interested" EntitySet="Interested" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Governs__users_i__32E0915F" Association="Self.FK__Governs__users_i__32E0915F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Governs" EntitySet="Governs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Intereste__users__2D27B809" Association="Self.FK__Intereste__users__2D27B809">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Interested" EntitySet="Interested" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="toletBDdbModelStoreContainer" CdmEntityContainer="toletBDdbEntities">
+          <EntitySetMapping Name="Ad">
+            <EntityTypeMapping TypeName="toletBDdbModel.Ad">
+              <MappingFragment StoreEntitySet="Ad">
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="rent" ColumnName="rent" />
+                <ScalarProperty Name="img1" ColumnName="img1" />
+                <ScalarProperty Name="img2" ColumnName="img2" />
+                <ScalarProperty Name="img3" ColumnName="img3" />
+                <ScalarProperty Name="img4" ColumnName="img4" />
+                <ScalarProperty Name="datee" ColumnName="datee" />
+                <ScalarProperty Name="addresss_id" ColumnName="addresss_id" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresss">
+            <EntityTypeMapping TypeName="toletBDdbModel.Addresss">
+              <MappingFragment StoreEntitySet="Addresss">
+                <ScalarProperty Name="addresss_id" ColumnName="addresss_id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="street_name" ColumnName="street_name" />
+                <ScalarProperty Name="street_no" ColumnName="street_no" />
+                <ScalarProperty Name="additional_addresss" ColumnName="additional_addresss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="toletBDdbModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="A_id" ColumnName="A_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detailsofad">
+            <EntityTypeMapping TypeName="toletBDdbModel.Detailsofad">
+              <MappingFragment StoreEntitySet="Detailsofad">
+                <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+                <ScalarProperty Name="number_of_room" ColumnName="number_of_room" />
+                <ScalarProperty Name="number_of_kitchen" ColumnName="number_of_kitchen" />
+                <ScalarProperty Name="number_of_bathroom" ColumnName="number_of_bathroom" />
+                <ScalarProperty Name="size_of_flat" ColumnName="size_of_flat" />
+                <ScalarProperty Name="additional_info" ColumnName="additional_info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Governs">
+            <EntityTypeMapping TypeName="toletBDdbModel.Governs">
+              <MappingFragment StoreEntitySet="Governs">
+                <ScalarProperty Name="G_id" ColumnName="G_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="request" ColumnName="request" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interested">
+            <EntityTypeMapping TypeName="toletBDdbModel.Interested">
+              <MappingFragment StoreEntitySet="Interested">
+                <ScalarProperty Name="I_id" ColumnName="I_id" />
+                <ScalarProperty Name="ad_id" ColumnName="ad_id" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="toletBDdbModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="users_pass" ColumnName="users_pass" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="addresss" ColumnName="addresss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toletBD", "toletBD\toletBD.csproj", "{DB85238F-77F7-4CE3-BD72-07310F32A01C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toletBDdb", "toletBDdb\toletBDdb.csproj", "{1FBFAD7F-6EB6-40FC-A8D3-02383044520C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB85238F-77F7-4CE3-BD72-07310F32A01C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB85238F-77F7-4CE3-BD72-07310F32A01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB85238F-77F7-4CE3-BD72-07310F32A01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB85238F-77F7-4CE3-BD72-07310F32A01C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FBFAD7F-6EB6-40FC-A8D3-02383044520C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FBFAD7F-6EB6-40FC-A8D3-02383044520C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FBFAD7F-6EB6-40FC-A8D3-02383044520C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FBFAD7F-6EB6-40FC-A8D3-02383044520C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57C5D9B9-E109-4A88-831A-D2B100EFD702}
+	EndGlobalSection
+EndGlobal
