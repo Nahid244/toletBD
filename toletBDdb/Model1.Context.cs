@@ -13,10 +13,10 @@ namespace toletBDdb
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class toletBDdbEntities : DbContext
+    public partial class toletBDdbEntities1 : DbContext
     {
-        public toletBDdbEntities()
-            : base("name=toletBDdbEntities")
+        public toletBDdbEntities1()
+            : base("name=toletBDdbEntities1")
         {
         }
     

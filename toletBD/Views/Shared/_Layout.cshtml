@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,6 +7,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -67,17 +70,24 @@
 
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav x-nav-menu">
-                                    <li class="nav-item active">
+                                    <li class="nav-item active" style="padding-left:15px;font-size:15px">
                                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="padding-left:15px;font-size:15px">
                                         <a class="nav-link" href="#">Features</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="padding-left:15px;font-size:15px">
                                         <a class="nav-link" href="#">Pricing</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#">Disabled</a>
+                                    <li class="nav-item" style="padding-left:15px;font-size:15px">
+                                        <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" style="padding-left:15px;font-size:15px">
+                                        <a href="" class="nav-link" data-toggle="modal" data-target="#modalRegForm">
+                                            Reg
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -100,67 +110,92 @@
 
 
 
-    <!-- <div class="container-fluid">
-        <div class="row" style="padding-top:200px;">
-            <div class="col-md-2 col-sm-12 fadeshow1 ">
-                <div class="wrapper">
-                    <!-- Sidebar
-                    <nav id="sidebar">
-                        <div class="sidebar-header">
-                            <h2>toletBD</h2>
-                        </div>
 
-                        <ul class="list-unstyled components">
-                            <p>toletBD</p>
-                            <li class="">
-                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                                <ul class="collapse list-unstyled" id="homeSubmenu">
-                                    <li>
-                                        <a href="#">Home 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Home 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Home 3</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">About</a>
-                            </li>
-                            <li>
-                                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                                <ul class="collapse list-unstyled" id="pageSubmenu">
-                                    <li>
-                                        <a href="#">Page 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Page 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Page 3</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5 ">
+                        <i class="fa fa-envelope prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+
+                        <input type="email" id="defaultForm-email" class="form-control validate " style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fa fa-lock prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                    </div>
 
                 </div>
-            </div>
-            <div class="col-md-10">
-
-
-
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="options ">
+                        <p class="pt-1">No Account? <a href="" class="" data-dismiss="modal" data-toggle="modal" data-target="#modalRegForm">Sign up now</a></p>
+                    </div>
+                    <button class="btn btn-default">Login</button>
+                </div>
             </div>
         </div>
-    </div>-->
+    </div>
+
+    @using (Html.BeginForm("Index", "Home"))
+    {
+
+        <div class="modal fade" id="modalRegForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5 ">
+                            <i class="fa fa-user prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+
+                            <input name="user" placeholder="Name" id="defaultForm-email" class="form-control validate " style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                            <label data-error="wrong" data-success="right" for="defaultForm-email">Your Name</label>
+                        </div>
+                        <div class="md-form mb-5 ">
+                            <i class="fa fa-envelope prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+
+                            <input name="mail" type="email" id="defaultForm-email" class="form-control validate " style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                            <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                        </div>
+
+                        <div class="md-form mb-4">
+                            <i class="fa fa-lock prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+                            <input name="pass" type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                        </div>
+                        <div class="md-form mb-4">
+                            <i class="fa fa-lock prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+                            <input type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Confirm password</label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <div class="options ">
+                            <p class="pt-1">Already have Account? <a href="" class="" data-dismiss="modal" data-toggle="modal" data-target="#modalLoginForm">login</a></p>
+                        </div>
+                        <button id="myButton" class="btn btn-default" type="submit" value="Reg">Reg</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
     @RenderBody()
     <div class="container-fluid body-content">
 
@@ -213,7 +248,7 @@
         </footer>
         <!-- Footer -->
     </div>
-
+   
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

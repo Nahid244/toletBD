@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4fdcd2086af24e73a76a2bd4bac571a4" Name="Diagram1">
+      <Diagram DiagramId="77a44118add048939372768534ae5afe" Name="Diagram1">
         <EntityTypeShape EntityType="toletBDdbModel.Ad" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="toletBDdbModel.Addresss" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="toletBDdbModel.Admin" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />

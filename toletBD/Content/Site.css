@@ -217,11 +217,12 @@ ul ul a {
 }
 
 .navbar .nav-item .nav-link {
-    color: blue;
+    color: white;
+    
 }
 
     .navbar .nav-item .nav-link:hover .navbar .nav-item .nav-link {
-        color:blue !important;
+        color:red !important;
     }
   
     
@@ -317,13 +318,69 @@ ul ul a {
     overflow: hidden;
     padding:5px;
 }
-/*
+/*chat*/
+.chatperson {
+    display: block;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding: 4px;
+}
+
+    .chatperson:hover {
+        text-decoration: none;
+        border-bottom: 1px solid orange;
+    }
+
+.namechat {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.chatperson .chatimg img {
+    width: 40px;
+    height: 40px;
+    background-image: url('http://i.imgur.com/JqEuJ6t.png');
+}
+
+.chatperson .pname {
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+.chatperson .lastmsg {
+    font-size: 12px;
+    padding-left: 5px;
+    color: #ccc;
+}
+
+.limit-item {
+    height: 50%;
+}
+/*profile*/
+.glyphicon {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}
+/*input login*/
+
+    /*
         list view end
 
     */
-/*hide side bar*/
-@media only screen and (max-width: 400px) {
-    .fadeshow1 {
-        display: none;
+    /*hide side bar*/
+    @media only screen and (max-width: 400px) {
+        .fadeshow1 {
+            display: none;
+        }
     }
-}

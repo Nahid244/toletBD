@@ -60,6 +60,13 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="DBoperation\AddressRep.cs" />
+    <Compile Include="DBoperation\AdminRep.cs" />
+    <Compile Include="DBoperation\AdRep.cs" />
+    <Compile Include="DBoperation\DetailRep.cs" />
+    <Compile Include="DBoperation\GovernRep.cs" />
+    <Compile Include="DBoperation\InterestedRep.cs" />
+    <Compile Include="DBoperation\UsersRep.cs" />
     <Compile Include="Detailsofad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -90,7 +97,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -99,6 +108,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\toletDb\toletDb.csproj">
+      <Project>{b1376606-5fc4-4619-bcea-7e759081f742}</Project>
+      <Name>toletDb</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">
@@ -111,9 +129,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
