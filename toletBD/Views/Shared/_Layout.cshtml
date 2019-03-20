@@ -1,4 +1,4 @@
-﻿
+﻿@model toletDb.usersModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,8 +146,9 @@
         </div>
     </div>
 
-    @using (Html.BeginForm("Index", "Home"))
+    @using (Html.BeginForm("saveReg", "Home", FormMethod.Post))
     {
+        @Html.ValidationSummary(true)
 
         <div class="modal fade" id="modalRegForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -163,8 +164,12 @@
                         <div class="md-form mb-5 ">
                             <i class="fa fa-user prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
 
+
                             <input name="user" placeholder="Name" id="defaultForm-email" class="form-control validate " style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+
+                           
                             <label data-error="wrong" data-success="right" for="defaultForm-email">Your Name</label>
+
                         </div>
                         <div class="md-form mb-5 ">
                             <i class="fa fa-envelope prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
@@ -175,12 +180,16 @@
 
                         <div class="md-form mb-4">
                             <i class="fa fa-lock prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
+
                             <input name="pass" type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+
                             <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
                         </div>
                         <div class="md-form mb-4">
                             <i class="fa fa-lock prefix grey-text" style="float:left;font-size:30px;opacity:0.5;"></i>
-                            <input type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+
+                            <input name="password" type="password" id="defaultForm-pass" class="form-control validate" style="background:transparent;border:none;border-bottom:0.4px solid #000000;">
+
                             <label data-error="wrong" data-success="right" for="defaultForm-pass">Confirm password</label>
                         </div>
 
@@ -189,7 +198,10 @@
                         <div class="options ">
                             <p class="pt-1">Already have Account? <a href="" class="" data-dismiss="modal" data-toggle="modal" data-target="#modalLoginForm">login</a></p>
                         </div>
+
                         <button id="myButton" class="btn btn-default" type="submit" value="Reg">Reg</button>
+
+
                     </div>
                 </div>
             </div>
@@ -248,9 +260,15 @@
         </footer>
         <!-- Footer -->
     </div>
-   
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/globalize.js"></script>
+    <script src="~/Scripts/globalize.culture.fr-FR.js"></script>
+    
+}

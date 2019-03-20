@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace toletBDdb
 {
     using System;
@@ -26,6 +26,7 @@ namespace toletBDdb
         public string users_pass { get; set; }
         public string phone_no { get; set; }
         public string addresss { get; set; }
+        
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

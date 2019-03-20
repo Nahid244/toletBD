@@ -18,7 +18,7 @@ namespace toletBD.Controllers
             adminRep = new AdminRep();
             usersrep = new UsersRep();
         }
-        
+        [HttpGet]
         public ActionResult Index()
         {
 
@@ -27,6 +27,7 @@ namespace toletBD.Controllers
         [HttpPost]
         public ActionResult saveReg()
         {
+
             usersModel u = new usersModel()
             {
                 users_id = Request["mail"],
@@ -36,13 +37,23 @@ namespace toletBD.Controllers
                 addresss = ""
 
             };
-            if (ModelState.IsValid)
+            if ( Request["pass"] != Request["password"]  || usersrep.chkUser(Request["mail"])==true) {
+
+                ModelState.AddModelError("name","fgfggggggggggggggggggggg");
+                return RedirectToAction("Login", "Home");
+
+
+            }
+            if (ModelState.IsValid )
             {
                 usersrep.addusers(u);
+                return RedirectToAction("userAccount", "Home");
             }
 
 
-            return RedirectToAction("Index", "Home");
+           
+            return Redirect(Request.UrlReferrer.PathAndQuery);
+
 
         }
 
