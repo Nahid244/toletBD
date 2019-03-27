@@ -12,7 +12,7 @@ namespace toletBDdb.DBoperation
        public List<Adminmodel> Getad() {
             using (var con=new toletBDdbEntities1())
             {
-                var res = con.Admin.Select(x =>
+                var res = con.Admins.Select(x =>
                     new Adminmodel()
                     {
                         A_id = x.A_id,

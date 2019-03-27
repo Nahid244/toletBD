@@ -1,6 +1,7 @@
 ﻿
+@model toletDb.AdModel
 @{
-    ViewBag.Title = "postAd";
+
 }
 
 <div style="height:40vh;">
@@ -12,143 +13,162 @@
     <div class="row">
         <div class="col-2">
             <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h2>toletBD</h2>
-                </div>
+
 
                 <ul class="list-unstyled components">
                     <p>toletBD</p>
                     <li class="">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">myAccount</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
+                        <a class="fa fa-user" href="/Home/Users">Account</a>
+
+                    </li>
+                    <li class="">
+                        <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
+
                     </li>
                     <li>
-                        <a href="#">massage</a>
+                        <a class="fa fa-comments" href="/Home/meesage">massage</a>
+                    </li>
+
+                    <li>
+                        <a class="fa fa-bell" href="/Home/postAd">postAd</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">postAd</a>
-                    </li>
-                    <li>
-                        <a href="#">Logout</a>
+                        <a class="fa fa-level-down" href="#">Logout</a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <div class="col-10">
-            <div class="container">
-                <h1 class="fa fa-user">Post Ad</h1>
-                <hr>
-                <div class="row">
-                    <!-- left column -->
-                    <!-- edit form column -->
-                    <div class="col-9 personal-info">
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a>
-                            <i class="fa fa-coffee"></i>
-                            This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                        </div>
-                        <h3>Personal info</h3>
-
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">First name:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="Jane">
-                                </div>
+       
+            <div class="col-10">
+                <div class="container">
+                    <h1 class="fa fa-user">Post Ad</h1>
+                    <hr>
+                   
+                    <div class="row">
+                        <!-- left column -->
+                        <!-- edit form column -->
+                       
+                        <div class="col-9 personal-info">
+                            <div class="alert alert-info alert-dismissable">
+                                <a class="panel-close close" data-dismiss="alert">×</a>
+                                <i class="fa fa-coffee"></i>
+                                This is an <strong>.alert</strong>. Use this to show important messages to the user.
                             </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Last name:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="Bishop">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Company:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Email:</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="janesemail@gmail.com">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">Time Zone:</label>
-                                <div class="col-lg-8">
-                                    <div class="ui-select">
-                                        <select id="user_time_zone" class="form-control">
-                                            <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                            <option value="Alaska">(GMT-09:00) Alaska</option>
-                                            <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                            <option value="Arizona">(GMT-07:00) Arizona</option>
-                                            <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                            <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                            <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                            <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                        </select>
+                            <h3>Ad info</h3>
+                            @using (Html.BeginForm("postAd", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                            <form class="form-horizontal" role="form">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Phone no:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" name="pno" type="text" value="">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Username:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" value="janeuser">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Rent:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" name="rent" type="text" value="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Password:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="password" value="11111122333">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">image1:</label>
+                                    <div class="col-lg-8">
+                                        <input type="file" name="pic1" accept="image/*">
+                                        <input type="file" name="pic2" accept="image/*">
+                                        <input type="file" name="pic3" accept="image/*">
+                                        <input type="file" name="pic4" accept="image/*">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Confirm password:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="password" value="11111122333">
+
+                                
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">City:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" name="city" type="text" value="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
-                                <div class="col-md-8">
-                                    <input type="button" class="btn btn-primary" value="Save Changes">
-                                    <span></span>
-                                    <input type="reset" class="btn btn-default" value="Cancel">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Area:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="area" type="text" value="">
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Stree Name:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="streetname" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Streer no:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="streetno" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Additional Address:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="additionaladdress" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Availability:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="availability" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Number of Room:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="nofroom" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Number of Kitchen:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="nofkitchen" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Number of Bathroom:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="nofbathroom" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Size of flat:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="sizeflat" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Additional info:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" name="additionalinfo" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-8">
+                                        <input type="submit" class="btn btn-primary" value="Post">
+                                        <span></span>
+                                        <input type="reset" class="btn btn-default" value="Cancel">
+                                    </div>
+                                </div>
+
+                            </form>
+                            }
                             </div>
-                        </form>
+                        
+                        </div>
+                   
                     </div>
-                </div>
+
             </div>
-
+      
         </div>
-
-    </div>
 </div>
 
 

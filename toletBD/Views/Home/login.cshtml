@@ -4,68 +4,73 @@
     ViewBag.Title = "login";
 }
 
-<h2>login</h2>
-<div style="height:40vh;">
+<div style="height:30vh;">
 
 
 
 </div>
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>usersModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.users_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.users_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.users_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.users_pass, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.users_pass, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.users_pass, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container"   style="background-color:rgb(34, 34, 34)">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.phone_no, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.phone_no, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.phone_no, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-12 col-md-8 col-lg-6 pb-5">
+            <div style="height:10vh;">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.addresss, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.addresss, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.addresss, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
+            @using (Html.BeginForm("login", "Home", FormMethod.Post, new { id = "loginForm" }))
+            {
+                <!--Form with header-->
+                <form action="" method="post">
+                    <div class="card border-primary rounded-0">
+                        <div class="card-header p-0" style="background-color:rgb(63, 130, 82)">
+                            <div class=" text-white text-center py-2" style="background-color:rgb(63, 130, 82)">
+                                <h3><i class=""></i>Sign in</h3>
+
+                            </div>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-body p-3">
+                            <!--Body-->
+                            <!-- <div class="form-group">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+            </div>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Name" required>
+        </div>-->
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
+                                </div>
+                                <input type="email" class="form-control" id="nombre" name="mail" placeholder="ex@gmail.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+
+                                <input type="email" class="form-control" id="nombre" name="pass" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <!--  <div class="form-group">
+        <div class="input-group mb-2">
+
+            <input type="email" class="form-control" id="nombre" name="email" placeholder="ConfirmPassword" required>
         </div>
+    </div>-->
+                        <div class="text-center">
+                            <input type="submit" value="Login" class="btn btn-success btn-block rounded-0 py-2">
+                        </div>
+                    </div>
+
+                </form>
+            }
+                <!--Form with header-->
+
+            </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

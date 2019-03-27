@@ -1,0 +1,299 @@
+﻿@model toletDb.AdModel
+@{
+    ViewBag.Title = "updateAd";
+}
+
+<div style="height:30vh;">
+
+
+
+</div>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebar">
+
+
+                <ul class="list-unstyled components">
+                    <p>toletBD</p>
+                    <li class="">
+                        <a class="fa fa-user" href="/Home/Users">Account</a>
+
+                    </li>
+                    <li class="">
+                        <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
+
+                    </li>
+                    <li>
+                        <a class="fa fa-comments" href="/Home/meesage">massage</a>
+                    </li>
+
+                    <li>
+                        <a class="fa fa-bell" href="/Home/postAd">postAd</a>
+                    </li>
+                    <li>
+                        <a class="fa fa-level-down" href="#">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
+        
+    
+        
+        <div class="col-10" style="background-color:rgb(214, 219, 233)">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.img1)" width="200" height="200" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.img2)" width="200" height="200" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.img3)" width="200" height="200" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.img4)" width="200" height="200" class="img-responsive" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @if (Model.users_id == User.Identity.Name)
+            {
+                <div class="col-10">
+                    <div class="container">
+                        <h1 class="fa fa-user">upDate AD</h1>
+                        <hr>
+
+                        <div class="row">
+                            <!-- left column -->
+                            <!-- edit form column -->
+                            <div class="col-9 personal-info">
+                                <div class="alert alert-info alert-dismissable">
+                                    <a class="panel-close close" data-dismiss="alert">×</a>
+                                    <i class="fa fa-coffee"></i>
+                                    <strong>Attention</strong>. This will change your personal info
+                                </div>
+                                <h3>Ad info</h3>
+
+                                @using (Html.BeginForm("updateAd", "Home", FormMethod.Post))
+                                {
+                                    <form class="form-horizontal" role="form">
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Phone no:</label>
+                                            <div class="col-lg-8">
+                                                <input class="form-control" name="pno" type="text" value="@Model.phone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Rent:</label>
+                                            <div class="col-lg-8">
+                                                <input class="form-control" name="rent" type="text" value="@Model.rent">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">City:</label>
+                                            <div class="col-lg-8">
+                                                <input class="form-control" name="city" type="text" value="@Model.city">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Area:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="area" type="text" value="@Model.area">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Stree Name:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="streetname" type="text" value="@Model.street_name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Streer no:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="streetno" type="text" value="@Model.street_no">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Additional Address:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="additionaladdress" type="text" value="@Model.additional_addresss">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Availability:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="availability" type="text" value="@Model.availability">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Number of Room:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="nofroom" type="text" value="@Model.number_of_room">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Number of Kitchen:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="nofkitchen" type="text" value="@Model.number_of_kitchen">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Number of Bathroom:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="nofbathroom" type="text" value="@Model.number_of_bathroom">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Size of flat:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="sizeflat" type="text" value="@Model.size_of_flat">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Additional info:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" name="additionalinfo" type="text" value="@Model.additional_info">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"></label>
+                                            <div class="col-md-8">
+                                                <input type="submit" class="btn btn-primary" value="Update" onclick="location.href='@Url.Action("updateAd", "Home",new { id=Model.ad_id})'">
+                                                <span></span>
+                                                <input type="reset" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "Home")'">
+                                                <input type="reset" class="btn btn-default" value="delete" onclick="location.href='@Url.Action("delAd", "Home",new { id=Model.ad_id})'">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.users_id != User.Identity.Name)
+            {
+                <div class="col-10">
+                    <div class="container">
+                        <h1 class="fa fa-home">AD</h1>
+                        <hr>
+
+                        <div class="row">
+                            <!-- left column -->
+                            <!-- edit form column -->
+                            <div class="col-9 personal-info">
+                                <div class="alert alert-info alert-dismissable">
+                                    <a class="panel-close close" data-dismiss="alert">×</a>
+                                    <i class="fa fa-coffee"></i>
+                                    <strong>Attention</strong>. if you like the ad then hit respond
+                                </div>
+                                <h3>Ad info</h3>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Phone no: @Model.phone </label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Rent: @Model.rent Tk</label>
+
+                                </div>
+                                <br />
+
+
+                                <div class="form-group">
+                                    <label class="col-12 control-label">City:  @Model.city</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Area:  @Model.area</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Stree Name:  @Model.street_name</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Streer no: @Model.street_no</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Additional Address:  @Model.additional_addresss</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Availability:   @Model.availability</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Number of Room:  @Model.number_of_room</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Number of Kitchen:  @Model.number_of_kitchen</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Number of Bathroom:   "@Model.number_of_bathroom</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Size of flat:  @Model.size_of_flat</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label">Additional info:  @Model.additional_info</label>
+
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-12 control-label"></label>
+                                    <div class="col-md-8">
+                                        <input type="reset" class="btn btn-primary" value="Respond" onclick="location.href='@Url.Action("meesage", "Home",new { id=Model.users_id})'">
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

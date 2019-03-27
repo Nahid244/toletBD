@@ -13,7 +13,7 @@ namespace toletDb
         public string users_id { get; set; }
         public string msg { get; set; }
 
-        public virtual Ad Ad { get; set; }
+        public virtual AdModel Ad { get; set; }
         public virtual usersModel Users { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace toletBDdb.DBoperation
     {
         public void addusers(usersModel um) {
             using (var context=new toletBDdbEntities1()) {
-                Users users = new Users()
+                User users = new User()
                 {
                     users_id = um.users_id,
                     users_pass = um.users_pass,
@@ -23,6 +23,44 @@ namespace toletBDdb.DBoperation
             }
 
         }
+        public usersModel get1user(String id) {
+
+            using (var context = new toletBDdbEntities1())
+            {
+                var res = context.Users.Where(x => x.users_id == id).Select(x => new usersModel()
+                {
+                    users_id = x.users_id,
+                    users_pass = x.users_pass,
+                    name = x.name,
+                    phone_no = x.phone_no,
+                    addresss = x.addresss
+
+
+
+                }).FirstOrDefault();
+
+
+                return res;
+            }
+
+        }
+        public bool updateuser(String id,String name,String phn,String add,String pass) {
+            using (var context = new toletBDdbEntities1())
+            {
+                var user = context.Users.FirstOrDefault(x=>x.users_id==id);
+                if (user!=null) {
+                    user.name = name;
+                    user.phone_no = phn;
+                    user.addresss = add;
+                    user.users_pass = pass;
+                }
+
+                context.SaveChanges();
+                return true;
+            }
+
+            
+            }
         public List<usersModel> getalUsers() {
 
             using (var context = new toletBDdbEntities1()) {
@@ -40,6 +78,7 @@ namespace toletBDdb.DBoperation
                 return res;
             }
         }
+
         public bool chkUser(String id)
         {
             using (var context = new toletBDdbEntities1())
@@ -55,6 +94,26 @@ namespace toletBDdb.DBoperation
 
 
                 
+            }
+
+
+        }
+        public bool chkloginUser(String id,String pass)
+        {
+            using (var context = new toletBDdbEntities1())
+            {
+                if (context.Users.Any(x => x.users_id == id && x.users_pass == pass) )
+                {
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+
+
+
             }
 
 

@@ -17,10 +17,9 @@ namespace toletBDdb
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ad()
         {
-            this.Interested = new HashSet<Interested>();
+            this.Interesteds = new HashSet<Interested>();
         }
     
-        public string ad_id { get; set; }
         public string users_id { get; set; }
         public string phone { get; set; }
         public string rent { get; set; }
@@ -29,14 +28,21 @@ namespace toletBDdb
         public byte[] img3 { get; set; }
         public byte[] img4 { get; set; }
         public Nullable<System.DateTime> datee { get; set; }
-        public string addresss_id { get; set; }
         public string availability { get; set; }
-        public string detail_id { get; set; }
+        public string city { get; set; }
+        public string area { get; set; }
+        public string street_name { get; set; }
+        public string street_no { get; set; }
+        public string additional_addresss { get; set; }
+        public string number_of_room { get; set; }
+        public string number_of_kitchen { get; set; }
+        public string number_of_bathroom { get; set; }
+        public string size_of_flat { get; set; }
+        public string additional_info { get; set; }
+        public string ad_id { get; set; }
     
-        public virtual Addresss Addresss { get; set; }
-        public virtual Detailsofad Detailsofad { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interested> Interested { get; set; }
+        public virtual ICollection<Interested> Interesteds { get; set; }
     }
 }

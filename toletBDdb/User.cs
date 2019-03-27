@@ -6,34 +6,33 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace toletBDdb
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public User()
         {
-            this.Ad = new HashSet<Ad>();
-            this.Governs = new HashSet<Governs>();
-            this.Interested = new HashSet<Interested>();
+            this.Ads = new HashSet<Ad>();
+            this.Governs = new HashSet<Govern>();
+            this.Interesteds = new HashSet<Interested>();
         }
     
         public string users_id { get; set; }
         public string users_pass { get; set; }
         public string phone_no { get; set; }
         public string addresss { get; set; }
-        
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ad> Ad { get; set; }
+        public virtual ICollection<Ad> Ads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Governs> Governs { get; set; }
+        public virtual ICollection<Govern> Governs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interested> Interested { get; set; }
+        public virtual ICollection<Interested> Interesteds { get; set; }
     }
 }

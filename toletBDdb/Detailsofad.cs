@@ -14,20 +14,11 @@ namespace toletBDdb
     
     public partial class Detailsofad
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Detailsofad()
-        {
-            this.Ad = new HashSet<Ad>();
-        }
-    
-        public string detail_id { get; set; }
         public Nullable<int> number_of_room { get; set; }
         public Nullable<int> number_of_kitchen { get; set; }
         public Nullable<int> number_of_bathroom { get; set; }
         public string size_of_flat { get; set; }
         public string additional_info { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ad> Ad { get; set; }
+        public int detail_id { get; set; }
     }
 }

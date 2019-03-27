@@ -12,12 +12,12 @@ namespace toletBDdb
     using System;
     using System.Collections.Generic;
     
-    public partial class Governs
+    public partial class Govern
     {
         public int G_id { get; set; }
         public string users_id { get; set; }
         public string request { get; set; }
     
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

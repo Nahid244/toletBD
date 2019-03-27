@@ -25,12 +25,12 @@ namespace toletBDdb
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ad> Ad { get; set; }
-        public virtual DbSet<Addresss> Addresss { get; set; }
-        public virtual DbSet<Admin> Admin { get; set; }
-        public virtual DbSet<Detailsofad> Detailsofad { get; set; }
-        public virtual DbSet<Governs> Governs { get; set; }
-        public virtual DbSet<Interested> Interested { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Ad> Ads { get; set; }
+        public virtual DbSet<Addresss> Addressses { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Detailsofad> Detailsofads { get; set; }
+        public virtual DbSet<Govern> Governs { get; set; }
+        public virtual DbSet<Interested> Interesteds { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -4,18 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77a44118add048939372768534ae5afe" Name="Diagram1">
-        <EntityTypeShape EntityType="toletBDdbModel.Ad" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Addresss" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Admin" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Detailsofad" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Governs" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Interested" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="toletBDdbModel.Users" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="toletBDdbModel.FK__Ad__addresss_id__1920BF5C" ManuallyRouted="false" />
-        <AssociationConnector Association="toletBDdbModel.FK__Ad__detail_id__1A14E395" ManuallyRouted="false" />
+      <Diagram DiagramId="b0674ed0a1384fe18e7f3860529f1de8" Name="Diagram1">
+        <EntityTypeShape EntityType="toletBDdbModel.Ad" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.Addresss" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.Admin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.Detailsofad" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.Govern" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.Interested" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="toletBDdbModel.User" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="toletBDdbModel.FK__Ad__users_id__182C9B23" ManuallyRouted="false" />
-        <AssociationConnector Association="toletBDdbModel.FK__Intereste__ad_id__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="toletBDdbModel.FK__Intereste__ad_id__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="toletBDdbModel.FK__Governs__users_i__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="toletBDdbModel.FK__Intereste__users__2D27B809" ManuallyRouted="false" />
       </Diagram>

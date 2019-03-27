@@ -14,12 +14,13 @@ namespace toletBDdb
     
     public partial class Interested
     {
-        public int I_id { get; set; }
-        public string ad_id { get; set; }
         public string users_id { get; set; }
         public string msg { get; set; }
+        public int I_id { get; set; }
+        public string msg1 { get; set; }
+        public string ad_id { get; set; }
     
         public virtual Ad Ad { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

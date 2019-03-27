@@ -1,4 +1,4 @@
-﻿
+﻿@model toletDb.usersModel
 @{
     ViewBag.Title = "userAccount";
 }
@@ -13,48 +13,27 @@
         <div class="col-2">
             <!-- Sidebar-->
             <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h2>toletBD</h2>
-                </div>
+
 
                 <ul class="list-unstyled components">
                     <p>toletBD</p>
                     <li class="">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
+                        <a class="fa fa-user" href="/Home/Users">Account</a>
+
+                    </li>
+                    <li class="">
+                        <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
+
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a class="fa fa-comments" href="/Home/meesage">massage</a>
+                    </li>
+
+                    <li>
+                        <a class="fa fa-bell" href="/Home/postAd">postAd</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a class="fa fa-level-down" href="#">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -66,86 +45,66 @@
                 <hr>
                 <div class="row">
                     <!-- left column -->
-                   
-
                     <!-- edit form column -->
                     <div class="col-9 personal-info">
                         <div class="alert alert-info alert-dismissable">
                             <a class="panel-close close" data-dismiss="alert">×</a>
                             <i class="fa fa-coffee"></i>
-                            This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                            <strong>Attention</strong>. This will change your personal info
                         </div>
                         <h3>Personal info</h3>
-
+                        @using (Html.BeginForm("userAccount", "Home", FormMethod.Post))
+                        {
                         <form class="form-horizontal" role="form">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">First name:</label>
+                                <label class="col-lg-3 control-label">New name:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="Jane">
+                                    <input class="form-control" name="user" type="text" value="@Model.name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Last name:</label>
+                                <label class="col-lg-3 control-label">New phone no:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="Bishop">
+                                    <input class="form-control" name="pno" type="text" value="@Model.phone_no">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Company:</label>
+                                <label class="col-lg-3 control-label">New Address:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="">
+                                    <input class="form-control" name="add" type="text" value="@Model.addresss">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Email:</label>
+                                <label class="col-lg-3 control-label">Current Pass:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="text" value="janesemail@gmail.com">
+                                    <input class="form-control" name="pass" type="text" value="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Time Zone:</label>
+                                <label class="col-lg-3 control-label">New Pass:</label>
                                 <div class="col-lg-8">
-                                    <div class="ui-select">
-                                        <select id="user_time_zone" class="form-control">
-                                            <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                            <option value="Alaska">(GMT-09:00) Alaska</option>
-                                            <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                            <option value="Arizona">(GMT-07:00) Arizona</option>
-                                            <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                            <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                            <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                            <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                        </select>
-                                    </div>
+                                    <input class="form-control" name="npass" type="text" value="">
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Username:</label>
+                                <label class="col-md-3 control-label">Confirm new pass:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="text" value="janeuser">
+                                    <input class="form-control" name="cnpass" type="text" value="">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Password:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="password" value="11111122333">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Confirm password:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" type="password" value="11111122333">
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">
-                                    <input type="button" class="btn btn-primary" value="Save Changes">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes">
                                     <span></span>
-                                    <input type="reset" class="btn btn-default" value="Cancel">
+                                    <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Users", "Home")'">
                                 </div>
                             </div>
                         </form>
+                        }
                     </div>
                 </div>
             </div>
