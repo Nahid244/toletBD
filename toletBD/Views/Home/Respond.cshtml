@@ -1,6 +1,6 @@
-﻿@model toletDb.usersModel
+﻿@model toletDb.InterestedModel
 @{
-    ViewBag.Title = "userAccount";
+    ViewBag.Title = "Respond";
 }
 
 <div style="height:40vh;">
@@ -25,6 +25,7 @@
                         <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
 
                     </li>
+
                     @if (User.Identity.Name != "Admin")
                     {
                         <li>
@@ -43,7 +44,7 @@
         <div class="col-10">
 
             <div class="container">
-                <h1 class="fa fa-user">Edit Profile</h1>
+                <h1 class="fa fa-user">Respond</h1>
                 <hr>
                 <div class="row">
                     <!-- left column -->
@@ -52,57 +53,54 @@
                         <div class="alert alert-info alert-dismissable">
                             <a class="panel-close close" data-dismiss="alert">×</a>
                             <i class="fa fa-coffee"></i>
-                            <strong>Attention</strong>. This will change your personal info
+                            <strong>Attention</strong>
                         </div>
                         <h3>Personal info</h3>
-                        @using (Html.BeginForm("userAccount", "Home", FormMethod.Post))
+                        @using (Html.BeginForm("Respond", "Home", FormMethod.Post))
                         {
                         <form class="form-horizontal" role="form">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">New name:</label>
+                                <label class="col-lg-3 control-label">name:</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="user" type="text" value="@Model.name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">New phone no:</label>
+                                <label class="col-lg-3 control-label">phone no:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="pno" type="text" value="@Model.phone_no">
+                                    <input class="form-control" name="pno" type="text" value="@Model.phone">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">New Address:</label>
+                                <label class="col-lg-3 control-label">Occupation:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="add" type="text" value="@Model.addresss">
+                                    <input class="form-control" name="occupation" type="text" value="@Model.occupation">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Current Pass:</label>
+                                <label class="col-lg-3 control-label">Family members:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="pass" type="text" value="">
+                                    <input class="form-control" name="fmembers" type="text" value="@Model.familymembers">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">New Pass:</label>
+                                <label class="col-lg-3 control-label">Present address:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="npass" type="text" value="">
+                                    <input class="form-control" name="paddress" type="text" value="@Model.presentAddress">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Confirm new pass:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" name="cnpass" type="text" value="">
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-8">
-                                    <input type="submit" class="btn btn-primary" value="Save Changes">
-                                    <span></span>
-                                    <input type="button" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Users", "Home")'">
+                                    <input type="submit" class="btn btn-primary" value="submit" >
+                                    @if (Model.name != "" && Model.familymembers != "" && Model.occupation != "" && Model.phone != "" && Model.presentAddress != "")
+                                    {
+                                        <input type="reset" class="btn btn-default" value="delete" onclick="location.href='@Url.Action("delResponders", "Home",new { id=Model.ad_id})'">
+                                    }
+
                                 </div>
                             </div>
                         </form>
@@ -115,4 +113,5 @@
 
     </div>
 </div>
+
 

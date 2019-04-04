@@ -104,13 +104,24 @@
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li class="nav-item" style="padding-left:15px;font-size:15px">
-                                            <a href="@Url.Action("logout", "Home")" class="nav-link" >
+                                            <a href="@Url.Action("logout", "Home")" class="nav-link">
                                                 Logout
                                             </a>
 
 
                                         </li>
 
+
+                                    }
+                                    @if (User.Identity.Name == "Admin")
+                                    {
+                                        <li class="nav-item" style="padding-left:15px;font-size:15px">
+                                            <a href="@Url.Action("AdminPanel", "Home")" class="nav-link">
+                                                Adminpanel
+                                            </a>
+
+
+                                        </li>
                                     }
                                 </ul>
                             </div>

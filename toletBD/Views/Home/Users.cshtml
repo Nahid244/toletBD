@@ -24,10 +24,11 @@
                         <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
 
                     </li>
+                    @if (User.Identity.Name!="Admin") {
                     <li>
-                        <a class="fa fa-comments" href="/Home/meesage">massage</a>
+                        <a class="fa fa-comments" href="/Home/ReqAdminPanel">ReqAdminPanel</a>
                     </li>
-
+                    }
                     <li>
                         <a class="fa fa-bell" href="/Home/postAd">postAd</a>
                     </li>

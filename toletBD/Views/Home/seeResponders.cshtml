@@ -1,0 +1,126 @@
+﻿@model List<toletDb.InterestedModel>
+@{
+    ViewBag.Title = "seeResponders";
+}
+
+<div style="height:40vh;">
+
+
+
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <!-- Sidebar-->
+            <nav id="sidebar">
+
+
+                <ul class="list-unstyled components">
+                    <p>toletBD</p>
+                    <li class="">
+                        <a class="fa fa-user" href="/Home/Users">Account</a>
+
+                    </li>
+                    <li class="">
+                        <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
+
+                    </li>
+
+                    @if (User.Identity.Name != "Admin")
+                    {
+                        <li>
+                            <a class="fa fa-comments" href="/Home/ReqAdminPanel">ReqAdminPanel</a>
+                        </li>
+                    }
+                    <li>
+                        <a class="fa fa-bell" href="/Home/postAd">postAd</a>
+                    </li>
+                    <li>
+                        <a class="fa fa-level-down" href="#">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-10">
+            <div class="container-fluid">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12 ">
+                            <div class="wpb_column vc_column_container vc_col-sm-8">
+                                <div class="vc_column_inner">
+                                    <div class="">
+                                        <div class="ere_propertywrap">
+
+                                            <div class="ere-property property-grid  col-gap-10">
+                                                <div class=" columns-2 columns-md-3 columns-sm-2 columns-xs-1 columns-mb-1 ">
+                                                    <div class="property-item mg-bottom-10 ere-item-wrap">
+                                                        <div class="property-inner">
+                                                            
+                                                            <div class="property-item-content">
+                                                                <div class="property-heading">
+                                                                    <h4 class="property-title">
+                                                                        <a href="https://www.toletdigital.com/property/white-pearl-apartments-furnished-short-stay-apartments-nairobi-kenya/" title="White Pearl Apartments Furnished Short Stay Apartments Nairobi  Kenya">
+                                                                          Name: @item.name
+                                                                        </a>
+
+                                                                    </h4>
+                                                                    <div class="property-price">
+
+                                                                        <span>Family members: @item.familymembers</span>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="propert-type">
+
+                                                                    <i class="fa fa-phone accent-color"></i>
+                                                                    <a href="" title="flats"><span>@item.phone </span></a>
+
+                                                                </div>
+                                                                <div class="property-loc">
+
+                                                                    <i class="fa fa-building-o accent-color"></i>
+                                                                    <span>Occupation: @item.occupation</span>
+
+                                                                </div>
+                                                                <div class="property-element-inline">
+                                                                    <div class="property-agent">
+
+                                                                        <a href="" title="Flats">
+                                                                            <i class="fa fa-user accent-color"></i>
+                                                                            <span>@item.users_id</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="property-date">
+                                                                        <i class="fa fa-home accent-color"></i>
+                                                                        @item.presentAddress
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    }
+                </div>
+            </div>
+
+            <hr>
+        </div>
+
+    </div>
+</div>
+
+
+

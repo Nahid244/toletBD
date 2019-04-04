@@ -12,7 +12,8 @@ using System.IO;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-
+using PagedList;
+using PagedList.Mvc;
 namespace toletBD.Controllers
 {
     
@@ -21,24 +22,41 @@ namespace toletBD.Controllers
         AdminRep adminRep=null;
         AdRep adRep = null;
         UsersRep usersrep = null;
+        InterestedRep interestedRep = null;
+        GovernRep governRep = null;
+        int val;
         public HomeController() {
             adminRep = new AdminRep();
             usersrep = new UsersRep();
             adRep = new AdRep();
+            interestedRep = new InterestedRep();
+            governRep = new GovernRep();
+            val = 1;
         }
         
-        public ActionResult Index()
+        public ActionResult Index(string searchby,string search, int ? page)
         {
-            AdModel a = new AdModel()
+            List<AdModel> a1;
+            if (searchby == "Area" && search != null)
             {
+                a1 = adRep.getsearchbyarea(search);
+            }
+            else if (searchby == "City" && search != null)
+            {
+                a1 = adRep.getsearchbycity(search);
+            }
 
-            };
-            List<AdModel> a1 = adRep.getalAdd();
+            else {
+                a1 = adRep.get4Add();
+            }
            
-            return View(a1);
+            
+
+            return View(a1.ToPagedList(page ?? 1, 6));
+           
+            
         }
        
-
 
 
         /* [HttpPost]
@@ -90,9 +108,19 @@ namespace toletBD.Controllers
             return View(a1);
         }
         [Authorize]
-        public ActionResult meesage()
+        [HttpGet]
+        public ActionResult meesage(string s)
         {
            
+
+
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult meesage(int id)
+        {
+
 
 
             return View();
@@ -137,6 +165,7 @@ namespace toletBD.Controllers
         public ActionResult Users()
         {
             usersModel u1 = usersrep.get1user(User.Identity.Name);
+           
             
             return View(u1);
         }
@@ -272,13 +301,13 @@ namespace toletBD.Controllers
             return Redirect("Index");
         }
         [Authorize]
-        public ActionResult delAd(String id)
+        public ActionResult delAd(String id,int ?page)
         {
             adRep.delAd(id);
            
             List<AdModel> a = adRep.getalAdd();
            
-            return View("Index", a);
+            return View("Index", a.ToPagedList(page ?? 1, 6));
 
             
         }
@@ -293,7 +322,7 @@ namespace toletBD.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult updateAd(String id,AdModel ab)
+        public ActionResult updateAd(String id,AdModel ab,int ? page)
         {
 
             AdModel a1 = new AdModel()
@@ -338,7 +367,7 @@ namespace toletBD.Controllers
             
             List<AdModel> a = adRep.getalAdd();
 
-            return View("Index",a);
+            return View("Index",a.ToPagedList(page ?? 1,6));
         }
         [HttpGet]
         public ActionResult login()
@@ -350,11 +379,13 @@ namespace toletBD.Controllers
         [HttpPost]
         public ActionResult login(usersModel u1)
         {
-            if (usersrep.chkloginUser(Request["mail"], Request["pass"])!=true) {
+            string s1 = Request["mail"].Replace("@gmail.com", "");
+            if (usersrep.chkloginUser(s1, Request["pass"])!=true) {
                 ModelState.AddModelError(String.Empty, "Invalid email or password");
                 return View();
             }
-            FormsAuthentication.SetAuthCookie(Request["mail"],false);
+            string s2 = Request["mail"].Replace("@gmail.com", "");
+            FormsAuthentication.SetAuthCookie(s2,false);
 
             return Redirect("Index");
 
@@ -376,9 +407,11 @@ namespace toletBD.Controllers
         [HttpPost]
         public ActionResult Reg(usersModel u1)
         {
+            string s1 = Request["mail"].Replace("@gmail.com","");
+            
             usersModel u = new usersModel()
             {
-                users_id = Request["mail"],
+                users_id =s1,
                 users_pass = Request["pass"],
                 name = Request["user"],
                 phone_no = "",
@@ -397,7 +430,7 @@ namespace toletBD.Controllers
                 ModelState.AddModelError("users_pass", "password doesn't match");
             }
 
-            if (Request["pass"] != Request["password"] || usersrep.chkUser(Request["mail"]) == true)
+            if (Request["pass"] != Request["password"] || usersrep.chkUser(Request["mail"]) == true || Request["user"] == "")
             {
                 
                
@@ -415,7 +448,148 @@ namespace toletBD.Controllers
 
             return Redirect("Index");
         }
+        [Authorize]
+        [HttpGet]
+        public ActionResult Respond(string id)
+        {
+            string s = User.Identity.Name;
+            InterestedModel interestedModel = interestedRep.get1Respond(id,s);
+            if (interestedModel==null) {
+                InterestedModel i = new InterestedModel()
+                {
+                    ad_id = id,
+                    familymembers = "",
+                    name = "",
+                    occupation = "",
+                    phone = "",
+                    presentAddress = "",
+                    users_id = "",
+
+                };
+                return View(i);
+
+            }
+            return View(interestedModel);
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult Respond(InterestedModel interestedModel,string id)
+        {
+            if (Request["user"] == "" || Request["pno"] == "" || Request["occupation"] == "" || Request["fmembers"] == "" || Request["fmembers"] == "" || Request["paddress"] == "")
+            {
+                ModelState.AddModelError(String.Empty, "One or more Empty fields");
+                InterestedModel interestedModel123 = interestedRep.get1Respond(id, User.Identity.Name);
+                if (interestedModel123 == null)
+                {
+                    InterestedModel i = new InterestedModel()
+                    {
+                        ad_id = id,
+                        familymembers = "",
+                        name = "",
+                        occupation = "",
+                        phone = "",
+                        presentAddress = "",
+                        users_id = "",
+
+                    };
+                    return View(i);
+                }
+                    return View(interestedModel123);
+            }
+            else {
+                InterestedModel interestedModel1 = new InterestedModel()
+                {
+                    users_id = User.Identity.Name,
+                    ad_id=id,
+                    name=Request["user"],
+                    phone=Request["pno"],
+                    occupation=Request["occupation"],
+                    familymembers= Request["fmembers"],
+                    presentAddress= Request["paddress"]
+
+                };
+                if (ModelState.IsValid) {
+                    if (interestedRep.chkRespond(id, User.Identity.Name))
+                    {
+                        interestedRep.updateRespond(interestedModel1);
+
+                    }
+                    else {
+                        interestedRep.addRespond(interestedModel1);
+
+                    }
+                    
+                }
+                InterestedModel interestedModel12 = interestedRep.get1Respond(id, User.Identity.Name);
+                return View(interestedModel12);
+
+            }
+
+            
+        }
+        [Authorize]
        
+        public ActionResult seeResponders(string id)
+        {
+            List<InterestedModel> interestedModel = interestedRep.getalResponder(id);
+
+            return View(interestedModel);
+        }
+        [Authorize]
+        public ActionResult delResponders(string id)
+        {
+            interestedRep.delRespond(id,User.Identity.Name);
+
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult AdminPanel()
+        {
+            List<GovernModel> governModels = governRep.getalReq();
+
+            return View(governModels);
+           
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult ReqAdminPanel()
+        {
+
+
+            return View();
+
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult ReqAdminPanel(GovernModel governModel)
+        {
+            if (Request["msg"] == "") {
+                ModelState.AddModelError(String.Empty, "Any of the fields can not be empty");
+                return View();
+            }
+            else if (ModelState.IsValid) {
+                GovernModel g = new GovernModel()
+                {
+                    users_id = User.Identity.Name,
+                    request = Request["msg"]
+
+                };
+                governRep.addReq(g);
+            }
+
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult delalReq()
+        {
+            governRep.clrReq();
+            List<GovernModel> governModels = governRep.getalReq();
+
+           
+            return View("AdminPanel", governModels);
+        }
 
 
     }

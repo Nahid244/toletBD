@@ -1,6 +1,6 @@
-﻿
-
-@model List<toletDb.AdModel>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<toletDb.AdModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -18,21 +18,21 @@
                     <ul class="list-unstyled components">
                         <p>toletBD</p>
                         <li class="">
-                            <a href="# ">Dhaka</a>
-                            
+                            <a href="@Url.Action("Index","Home",new { searchby="City",search="Dhaka"})">Dhaka</a>
+
                         </li>
                         <li>
-                            <a href="#">Barisal</a>
+                            <a href="@Url.Action("Index","Home",new { searchby="City",search="Barisal"})">Barisal</a>
                         </li>
                         <li>
-                            <a href="#" >Sylhet</a>
-                            
+                            <a href="@Url.Action("Index","Home",new { searchby="City",search="Sylhet"})">Sylhet</a>
+
                         </li>
                         <li>
-                            <a href="#">Noakhali</a>
+                            <a href="@Url.Action("Index","Home",new { searchby="City",search="Noakhali"})">Noakhali</a>
                         </li>
                         <li>
-                            <a href="#">Chittagong</a>
+                            <a href="@Url.Action("Index","Home",new { searchby="City",search="Chittagong"})">Chittagong</a>
                         </li>
                     </ul>
                 </nav>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-       
+
 
 
 
@@ -49,32 +49,23 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-                        <label class="col-md-6 control-label">Search by:</label>
-                        <select name="serach by">
-                            <option value="volvo">aaaa</option>
-                            <option value="saab">aaa</option>
-                            <option value="fiat">aaa</option>
-                            <option value="audi">aaaa</option>
-                        </select>
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <b>search by:</b>
+                            @Html.RadioButton("searchby", "Area") <text>Area</text>
+                            @Html.RadioButton("searchby", "City") <text>City</text> <br />
+                                
+                            @Html.TextBox("search") <input type="submit" class="btn btn-info" value="search" />
+                        }
                     </div>
+                       
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <form class="form-inline md-form form-sm active-cyan-2 mt-2">
-                            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                            <input type="reset" class="btn btn-default" value="search">
-                        </form>
-                    </div>
-
-                </div>
-            </div>
+            
             <br />
             <div class="container-fluid">
                 <div class="row">
-                    @foreach (var item in Model)
+                    @foreach (var item in  Model)
                     {
                         <div class="col-md-6 ">
                             <div class="wpb_column vc_column_container vc_col-sm-8">
@@ -156,32 +147,14 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-4">
-                        <form class="form-inline md-form form-sm active-cyan-2 mt-2">
+                    
 
-                            <input type="reset" class="btn btn-success" value="Prev">
-
-                        </form>
-                    </div>
-                    <div class="col-2">
-
-                    </div>
-                    <div>
-                        <form class="form-inline md-form form-sm active-cyan-2 mt-2">
-
-                            <input type="reset" class="btn btn-success" value="Next">
-
-                        </form>
-
-                    </div>
-                    <div class="col-2">
-
-                    </div>
+                    @Html.PagedListPager(Model,page=>Url.Action("Index",new { page,searchby=Request.QueryString["searchby"],search=Request.QueryString["search"]}))
 
                 </div>
             </div>
         </div>
-       
+
     </div>
-        
+
 </div>

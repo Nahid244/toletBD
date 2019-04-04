@@ -70,8 +70,146 @@ namespace toletBDdb.DBoperation
                     rent = x.rent,
                     img1 = x.img1,
                     // img2 = x.img2,
-                    //  img3 = adModel.img3,
-                    // img4 = adModel.img4,
+                    //  img3 = x.img3,
+                    // img4 = x.img4,
+                    datee = x.datee,
+
+
+                    availability = x.availability,
+
+
+
+
+
+
+                    city = x.city,
+                    area = x.area,
+                    street_name = x.street_name,
+                    street_no = x.street_no,
+                    additional_addresss = x.additional_addresss,
+
+
+
+                    number_of_room = x.number_of_room,
+                    number_of_kitchen = x.number_of_kitchen,
+                    number_of_bathroom = x.number_of_bathroom,
+                    size_of_flat = x.size_of_flat,
+                    additional_info = x.additional_info
+
+
+                }).ToList();
+
+
+                return res;
+            }
+        }
+        public List<AdModel> get4Add()
+        {
+
+            using (var context = new toletBDdbEntities1())
+            {
+                var res = context.Ads.Select(x => new AdModel()
+                {
+                    ad_id = x.ad_id,
+                    users_id = x.users_id,
+                    phone = x.phone,
+                    rent = x.rent,
+                    img1 = x.img1,
+                    // img2 = x.img2,
+                    //  img3 = x.img3,
+                    // img4 = x.img4,
+                    datee = x.datee,
+
+
+                    availability = x.availability,
+
+
+
+
+
+
+                    city = x.city,
+                    area = x.area,
+                    street_name = x.street_name,
+                    street_no = x.street_no,
+                    additional_addresss = x.additional_addresss,
+
+
+
+                    number_of_room = x.number_of_room,
+                    number_of_kitchen = x.number_of_kitchen,
+                    number_of_bathroom = x.number_of_bathroom,
+                    size_of_flat = x.size_of_flat,
+                    additional_info = x.additional_info
+
+
+                }).ToList();
+
+
+                return res;
+            }
+        }
+        public List<AdModel> getsearchbyarea(string s)
+        {
+
+            using (var context = new toletBDdbEntities1())
+            {
+                var res = context.Ads.Where(x=>x.area==s || s==null).Select(x => new AdModel()
+                {
+                    ad_id = x.ad_id,
+                    users_id = x.users_id,
+                    phone = x.phone,
+                    rent = x.rent,
+                    img1 = x.img1,
+                    // img2 = x.img2,
+                    //  img3 = x.img3,
+                    // img4 = x.img4,
+                    datee = x.datee,
+
+
+                    availability = x.availability,
+
+
+
+
+
+
+                    city = x.city,
+                    area = x.area,
+                    street_name = x.street_name,
+                    street_no = x.street_no,
+                    additional_addresss = x.additional_addresss,
+
+
+
+                    number_of_room = x.number_of_room,
+                    number_of_kitchen = x.number_of_kitchen,
+                    number_of_bathroom = x.number_of_bathroom,
+                    size_of_flat = x.size_of_flat,
+                    additional_info = x.additional_info
+
+
+                }).ToList();
+
+
+                return res;
+            }
+        }
+        public List<AdModel> getsearchbycity(string s)
+        {
+
+            using (var context = new toletBDdbEntities1())
+            {
+                var res = context.Ads.Where(x => x.city == s || s == null).Select(x => new AdModel()
+                {
+                    ad_id = x.ad_id,
+                    users_id = x.users_id,
+                    phone = x.phone,
+                    rent = x.rent,
+                    img1 = x.img1,
+                    // img2 = x.img2,
+                    //  img3 = x.img3,
+                    // img4 = x.img4,
                     datee = x.datee,
 
 
@@ -113,7 +251,7 @@ namespace toletBDdb.DBoperation
                     ad.phone = adModel.phone;
                     ad.rent = adModel.rent;
 
-                    ad.datee = adModel.datee;
+                   // ad.datee = adModel.datee;
 
 
                     ad.availability = adModel.availability;
@@ -147,7 +285,7 @@ namespace toletBDdb.DBoperation
 
 
         }
-        public bool delAd(String id)
+        public void delAd(String id)
         {
             using (var context = new toletBDdbEntities1())
             {
@@ -155,10 +293,13 @@ namespace toletBDdb.DBoperation
                 if (ad!=null) {
                     context.Ads.Remove(ad);
                     context.SaveChanges();
-                    return true;
+                    
                 }
+
+                context.Interesteds.Where(p => p.ad_id == id).ToList().ForEach(p => context.Interesteds.Remove(p));
+                context.SaveChanges();
             }
-            return false;
+            
         }
         public AdModel get1ad(String id)
         {

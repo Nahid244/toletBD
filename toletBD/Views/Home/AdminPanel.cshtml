@@ -1,0 +1,82 @@
+﻿@model List<toletDb.GovernModel>
+@{
+    ViewBag.Title = "AdminPanel";
+}
+@if (User.Identity.Name=="Admin") {
+
+<div style="height:30vh;">
+
+
+
+</div>
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            <input type="reset" class="btn btn-default" value="clearRequest" onclick="location.href='@Url.Action("delalReq", "Home")'">
+            <br />
+        
+        foreach (var item in Model) {
+        <div class="col-12 ">
+            <div class="wpb_column vc_column_container vc_col-sm-8">
+                <div class="vc_column_inner">
+                    <div class="">
+                        <div class="ere_propertywrap">
+
+                            <div class="ere-property property-grid  col-gap-10">
+                                <div class=" columns-2 columns-md-3 columns-sm-2 columns-xs-1 columns-mb-1 ">
+                                    <div class="property-item mg-bottom-10 ere-item-wrap">
+                                        <div class="property-inner">
+
+                                            <div class="property-item-content">
+                                                <div class="property-heading">
+                                                    <h4 class="property-title">
+                                                        <a href="https://www.toletdigital.com/property/white-pearl-apartments-furnished-short-stay-apartments-nairobi-kenya/" title="White Pearl Apartments Furnished Short Stay Apartments Nairobi  Kenya">
+                                                            Name:@item.users_id
+                                                        </a>
+
+                                                    </h4>
+                                                    <div class="property-price">
+
+                                                        <span>Request:</span>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="property-loc">
+
+
+                                                    <span>@item.request</span>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        }
+        }
+
+    </div>
+</div>
+}
+@if (User.Identity.Name!="Admin") {
+<div style="height:30vh;">
+
+
+
+</div>
+    <h1>you r not admin</h1>
+}

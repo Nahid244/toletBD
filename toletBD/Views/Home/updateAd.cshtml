@@ -1,4 +1,6 @@
-﻿@model toletDb.AdModel
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model toletDb.AdModel
 @{
     ViewBag.Title = "updateAd";
 }
@@ -8,7 +10,7 @@
 
 
 </div>
-<div class="container-fluid" >
+<div class="container-fluid">
     <div class="row">
         <div class="col-2">
             <nav id="sidebar">
@@ -24,9 +26,12 @@
                         <a class="fa fa-pencil" href="/Home/userAccount">updateAccount</a>
 
                     </li>
-                    <li>
-                        <a class="fa fa-comments" href="/Home/meesage">massage</a>
-                    </li>
+                    @if (User.Identity.Name != "Admin")
+                    {
+                        <li>
+                            <a class="fa fa-comments" href="/Home/ReqAdminPanel">ReqAdminPanel</a>
+                        </li>
+                    }
 
                     <li>
                         <a class="fa fa-bell" href="/Home/postAd">postAd</a>
@@ -37,10 +42,10 @@
                 </ul>
             </nav>
         </div>
-       
-        
-    
-        
+
+
+
+
         <div class="col-10" style="background-color:rgb(214, 219, 233)">
             <div class="container-fluid">
                 <div class="row">
@@ -175,10 +180,11 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label"></label>
                                             <div class="col-md-8">
-                                                <input type="submit" class="btn btn-primary" value="Update" onclick="location.href='@Url.Action("updateAd", "Home",new { id=Model.ad_id})'">
+                                                <input type="submit" class="btn btn-primary" value="Update" onclick="location.href='@Url.Action("updateAd", "Home",new {page=1, id=Model.ad_id})'">
                                                 <span></span>
                                                 <input type="reset" class="btn btn-default" value="Cancel" onclick="location.href='@Url.Action("Index", "Home")'">
-                                                <input type="reset" class="btn btn-default" value="delete" onclick="location.href='@Url.Action("delAd", "Home",new { id=Model.ad_id})'">
+                                                <input type="reset" class="btn btn-default" value="delete" onclick="location.href='@Url.Action("delAd", "Home",new {page=1, id=Model.ad_id})'">
+                                                <input type="reset" class="btn btn-default" value="Respond" onclick="location.href='@Url.Action("seeResponders", "Home",new { id=Model.ad_id})'">
                                             </div>
                                         </div>
 
@@ -280,7 +286,7 @@
                                 <div class="form-group">
                                     <label class="col-12 control-label"></label>
                                     <div class="col-md-8">
-                                        <input type="reset" class="btn btn-primary" value="Respond" onclick="location.href='@Url.Action("meesage", "Home",new { id=Model.users_id})'">
+                                        <input type="reset" class="btn btn-default" value="Respond" onclick="location.href='@Url.Action("Respond", "Home",new { id=Model.ad_id})'">
 
                                     </div>
                                 </div>

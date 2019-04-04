@@ -30,7 +30,7 @@ namespace toletBDdb
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Detailsofad> Detailsofads { get; set; }
         public virtual DbSet<Govern> Governs { get; set; }
-        public virtual DbSet<Interested> Interesteds { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Interested> Interesteds { get; set; }
     }
 }

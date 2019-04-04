@@ -14,12 +14,6 @@ namespace toletBDdb
     
     public partial class Ad
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ad()
-        {
-            this.Interesteds = new HashSet<Interested>();
-        }
-    
         public string users_id { get; set; }
         public string phone { get; set; }
         public string rent { get; set; }
@@ -42,7 +36,5 @@ namespace toletBDdb
         public string ad_id { get; set; }
     
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interested> Interesteds { get; set; }
     }
 }
