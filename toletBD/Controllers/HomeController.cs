@@ -418,19 +418,20 @@ namespace toletBD.Controllers
                 addresss = ""
 
             };
-            if (Request["user"]=="" || Request["pass"]=="" || Request["user"]== "" || Request["password"] == "" ) {
-                ModelState.AddModelError(String.Empty, "Any of the fields can not be empty");
+            if (Request["user"] == "" || Request["pass"] == "" || Request["password"] == "" || Request["mail"] == "") {
+                ModelState.AddModelError(String.Empty, "ANy of the faield cant be empty");
 
             }
-            if (usersrep.chkUser(Request["mail"]) == true && Request["mail"]!="")
+           
+            if (usersrep.chkUser(s1) == true && Request["mail"]!="")
             {
-                ModelState.AddModelError("users_id", "Email is taken");
+                ModelState.AddModelError(String.Empty, "Email is taken or null");
             }
             if (Request["pass"] != Request["password"]) {
-                ModelState.AddModelError("users_pass", "password doesn't match");
+                ModelState.AddModelError(String.Empty, "password doesn't match");
             }
 
-            if (Request["pass"] != Request["password"] || usersrep.chkUser(Request["mail"]) == true || Request["user"] == "")
+            if (Request["pass"] != Request["password"] || usersrep.chkUser(s1) == true || Request["user"] == "" || Request["pass"]=="" || Request["password"]=="" || Request["mail"]=="")
             {
                 
                

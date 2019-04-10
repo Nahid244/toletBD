@@ -37,8 +37,8 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                     </div>
-                                    <input type="text" class="form-control" id="nombre" name="user" placeholder="Name" required />
-                                    @Html.ValidationMessageFor(model => model.name)
+                                    <input type="text" class="form-control"  name="user" placeholder="Name" value="" required />
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
@@ -47,21 +47,21 @@
                                         <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
                                     </div>
 
-                                    <input type="email" class="form-control" id="nombre" name="mail" placeholder="ex@gmail.com" required />
-                                    @Html.ValidationMessageFor(model => model.users_id, "", new { @class = "text-danger" })
+                                    <input type="email" class="form-control"  name="mail" placeholder="ex@gmail.com" value="" required />
+                                   
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-2">
 
-                                    <input type="email" class="form-control" id="nombre" name="pass" placeholder="Password" required />
-                                    @Html.ValidationMessageFor(model => model.users_pass, "", new { @class = "text-danger" })
+                                    <input type="email" class="form-control"  name="pass" placeholder="Password" value="" required />
+                                   
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-2">
 
-                                    <input type="email" class="form-control" id="nombre" name="password" placeholder="ConfirmPassword" required />
+                                    <input type="email" class="form-control"  name="password" placeholder="ConfirmPassword" value="" required />
                                 </div>
                             </div>
                             <div class="text-center">
