@@ -5,7 +5,9 @@ toletBD
 
 * asp.net
 * mssql
-
+##tools
+* visual studio
+* sql server 2008
 
 ## Authors
 
